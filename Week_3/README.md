@@ -23,7 +23,7 @@ Be sure to have registered for an account on [TheDogAPI Website](https://thedoga
 
 ## Getting Started
 1. Navigate to the Week 3 Classwork Directory 
-2. Install the project packages using 
+2. Install the project dependencies
     ```
     npm install express supervisor axios dotenv
     ```
@@ -46,46 +46,46 @@ Be sure to have registered for an account on [TheDogAPI Website](https://thedoga
 
     // Exposes an API on your local computer
     app.listen(port, () => {
-    console.log("App Listening on Port 3000");
+        console.log("App Listening on Port 3000");
     });
 
     //More Configuration
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }))
-
     ```
+    The `require()` keyword loads in the external dependencies 
 5. Make sure the server runs by running the following terminal commands
     ```
     $ npm run dev
     > ...
     > App Listening on Port 3000
     ```
-    Note: the following command can be found in `package.json` under `scripts`. Extra scripts are often included including ones for testing and production. 
+    Note: the following command can be found in `package.json` under `scripts`. Extra scripts are often included including ones for testing and production (They will not be necessary in this project).
 
 ## Writing the Functions
 1. Add the following custom HTTP JS Functions 
     ```js
     // Helper HTTP Functions to auto parse out the contents of response
     async function httpGET(url, config) {
-    try {
-        const response = await axios.get(url, config);
-        return response.data;
-    } catch (error) {
-        console.error(error);
-        return error.response.data;
-    }
+        try {
+            const response = await axios.get(url, config);
+            return response.data;
+        } catch (error) {
+            console.error(error);
+            return error.response.data;
+        }
     }
     async function httpPOST(url, body, config) {
-    try {
-        const response = await axios.post(url, body, config);
-        return response.data;
-    } catch (error) {
-        console.error(error);
-        return error.response.data;
-    }
+        try {
+            const response = await axios.post(url, body, config);
+            return response.data;
+        } catch (error) {
+            console.error(error);
+            return error.response.data;
+        }
     }
     ```
-    We've added these to reduce the time needed to parse json requests and responses
+    We've added these to reduce the time needed to parse json requests and responses.
 ### Fetching the first 10 dog breeds (GET)
 
 <details><summary>Request/Response Structure</summary>
@@ -140,11 +140,12 @@ Be sure to have registered for an account on [TheDogAPI Website](https://thedoga
         res.json({"message": "ok"});
     });
     ```
+    `app.get("/breeds")` specifies a GET request at the relative endpoint of `/breeds`. `async` marks the function as asynchronous, a functionality needed for calling third party APIs. `req` and `res` stand for request and response.
 2. Call the Dog API 
     ```js
     // Get Doge Breeds => first 10 {name, height,weight,origin,life_span, image_id}
     app.get("/breeds", async (req, res) => {
-        const call = await httpGET("https://api.thedogapi.com/v1/breeds", { params: { limit: 10 }});
+        const call = await httpGET("https://api.thedogapi.com/v1/breeds",{ params: { limit: 10 }});
 
         res.json({"message": "ok"});
     });
@@ -168,6 +169,7 @@ Be sure to have registered for an account on [TheDogAPI Website](https://thedoga
     res.json({"message": "ok"});
     });
     ```
+    The [map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) function iterates through an array and returns an array with modified elements.
 4. Return the Response as JSON
     ```js
     // Get Doge Breeds => first 10 {name, height,weight,origin,life_span, image_id}
@@ -241,7 +243,7 @@ Be sure to have registered for an account on [TheDogAPI Website](https://thedoga
         res.json({"message": "ok"});
     });
     ```
-3. Iterate through the list of 
+3. Iterate through the list of votes 
     ```js
     // Vote for Dog Breeds in a list
     app.post("/votes", async (req, res) => {
@@ -365,10 +367,8 @@ Be sure to have registered for an account on [TheDogAPI Website](https://thedoga
 
 </p>
 </details>
-Implement this Method on your own 
 
 # Deliverables
+Add the `index.js` file in the deliverables folder.  
 # Links
-# Homework
-# Materials
 
