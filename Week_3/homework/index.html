@@ -10,8 +10,34 @@
 <body>
 	<div id='main-container'>
 		<div id='weather-container'>
-		</div> 
+			<div id="bigDateAndWeatherForPlace">
+				<h5 id="dateBig"></h5>
+				<h3 id="weatherforplace"></h3>
+			</div>
+				<div id="todayWeather">
+					<div id="todayText">
+						<h4 id="weatherShow"></h4>
+						<h2 id="temp"></h2>
+						<h4 id="aqi"></h4>
+					</div>
+					<div id="todayImage">
+						<img id="img">
+					</div>
+				</div>	
+				<div class="flex-container">
+					<div id='Box1'>
+					</div>
+					<div id='Box2'>
+					</div>
+					<div id='Box3'>
+					</div>
+					<div id='Box4'>
+					</div>
+					<div id='Box5'>
+					</div>
+				</div>
 	</div>
+</div>
 	<div id='side-container'>
 		<div>
 			<input id='search-input' placeholder='search for a city'></input>
@@ -23,7 +49,7 @@
 
 <script>
 		// USE YOUR OWN API KEY
-		const apiKey = "";
+		const apiKey = "6d5ba2dd42a77b9c86c2ce4a73e6e45e";
 
         // variable that stores the city that is chosen
 		let city;
@@ -99,7 +125,66 @@
 				lat: lat,
 				lon: lon
 			}
-            // BEGIN CODING HERE
+			city = city.fullName;
+			weatherforplace = document.getElementById("weatherforplace");
+			weatherforplace.innerHTML = "Weather for " + city;
+            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`)
+				.then((response) => response.json())
+				.then((json) => {
+					dateBig = document.getElementById("dateBig");
+					dateBig.innerHTML = formatDate(0);
+					weatherShow = document.getElementById("weatherShow");
+					weatherShow.innerHTML = json.weather[0].description;
+					temp = document.getElementById("temp");
+					temp.innerHTML = json.main.temp + "°F";
+					document.getElementById("img").src= "icons/" + json.weather[0].icon + ".svg";
+					
+				})
+			fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`)
+				.then((response) => response.json())
+				.then((json) => {
+					aqi = document.getElementById("aqi");
+					aqi.innerHTML = "AQI: "+json.list[0].main.aqi;
+					
+				})
+
+			let count = 0;
+			fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,hourly,alerts&units=imperial&appid=${apiKey}`)
+  				.then((response) => response.json())
+  				.then((json) => {
+    			json.daily.forEach((element, idx) => {
+
+				count = count + 1;
+
+				let box = "Box"+count;
+
+				Boxes = document.getElementById(box);
+
+      			var sampleDiv = document.createElement("div");
+      			var sampleImage = document.createElement("img");
+      			var sampleTitle = document.createElement("p3");
+				var date = document.createElement("h4");
+
+      			// Sample
+      			sampleDiv._id = idx;
+				sampleDiv.append(date);
+				sampleDiv.append(sampleImage);
+      			sampleDiv.append(sampleTitle);
+      			
+
+      			// Set Content Values
+      			sampleTitle.textContent = Math.round(element.temp.min) + "°F to " + Math.round(element.temp.max) + "°F"
+      			sampleImage.src = "icons/" + element.weather[0].icon + ".svg";
+				sampleImage.width = 100;
+				date.textContent = formatDate(count);
+
+      			// Add Div to Main Document
+				if (count < 6) {
+      			Boxes.append(sampleDiv);
+				}
+				//}
+    });
+  });
 		}
 	</script>
 </html>

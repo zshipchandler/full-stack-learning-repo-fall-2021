@@ -22,7 +22,7 @@
   }
   
   #main-container {
-    height: 100%;
+    height: 1000px;
     width: 66%;
     display: flex;
     flex-direction: column;
@@ -30,10 +30,85 @@
     align-items: center;
     background-color: #87b7ff;
   }
+
+  #bigDateAndWeatherForPlace {
+    font-size: 20px;
+    margin: 5px;
+  }
   
   #weather-container {
     height: 60%;
     width: 90%;
+  }
+
+  #todayWeather {
+    margin: 20px;
+    height: 30%;
+    width: 50%;
+    
+  }
+
+  #todayText {
+    width: 50%;
+    float:left;
+  }
+
+  #todayImage {
+    float:right;
+  }
+
+  #img {
+    height: 150px;
+    width: 150px;
+    
+  }
+
+  #Box1 {
+    background-color: white;
+    height: 300%;
+    width: 17%;
+    margin: 4px;
+    text-align: center;
+  }
+
+  #Box2 {
+    background-color: white;
+    height: 300%;
+    width: 17%;
+    margin: 4px;
+    text-align: center;
+  }
+
+  #Box3 {
+    background-color: white;
+    height: 300%;
+    width: 17%;
+    margin: 4px;
+    text-align: center;
+  }
+
+  #Box4 {
+    background-color: white;
+    height: 300%;
+    width: 17%;
+    margin: 4px;
+    text-align: center;
+  }
+
+  #Box5 {
+    background-color: white;
+    height: 300%;
+    width: 17%;
+    margin: 4px;
+    text-align: center;
+  }
+
+  .flex-container {
+    font-size: small;
+    display: flex;
+    flex-direction: row;
+    
+
   }
   
   #side-container {
