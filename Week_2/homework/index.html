@@ -7,8 +7,143 @@
   <meta name="description" content="" />
 </head>
 <body>
+    <img src='https://lh3.googleusercontent.com/tr2DoDEgWEO4Da0HbbBdI-flX-PlfdIodKuAmNWZa7umcXzRTvlTtBffyr8Q_UydF5whNoNCpy3jHit2cwleHFu8FG5SaM8IvS1a9-gYA2XTVH_MGaDUxc2lrjrcjLbv6tRNw-8xPyA=w2400'
+    style="width:300px;height:400px;"/>
+    <h1 id="name"></h1>
+    <h3>Intro</h2>
+    <p1 id="intro"></p1>
+    <h3>Education</h2>
+    <ul id="education"></ul>
+    <h3>Experience</h2>
+    <ul id="expList"></ul>
+    <h3>Interests</h2>
+    <ul id="interestsList"></ul>
+    <h3>Contact Me At</h2>
+    <a href id="email"></a>
+    <p id="phone"></p>
+    <h3>My Address</h2>
+    <p id="address"></p>
   <script>
-    // add the resume object here
+    var obj = {
+      basics: {
+          name: "Zara Shipchandler",
+          image: "https://lh3.googleusercontent.com/tr2DoDEgWEO4Da0HbbBdI-flX-PlfdIodKuAmNWZa7umcXzRTvlTtBffyr8Q_UydF5whNoNCpy3jHit2cwleHFu8FG5SaM8IvS1a9-gYA2XTVH_MGaDUxc2lrjrcjLbv6tRNw-8xPyA=w2400",
+          email: "z.shipchandler@utexas.edu",
+          phone: "(832) 206 3070",
+          summary: "freshman CS ctudent at the University of Texas at Austin",
+          location: {
+            address: "26723 Cedardale Pines Dr",
+            postalCode: "77494",
+            city: "katy",
+            countryCode: "+1",
+            reigon: "Texas"
+    }
+  },
+    work: [
+      {
+        name:"zel tutoring", 
+        position: "founder", 
+        url: "https://www.tinyurl.com/zeltutoring", 
+        startDate: "2020-04-28", 
+        endDate: "2021-05-21", 
+        summary: "founded organization"
+      },
+      {
+        name:"NCL", 
+        position: "VP", 
+        url: "https://www.nationalcharityleague.org/", 
+        startDate: "2015-04-28", 
+        endDate: "2021-05-21", 
+        summary: "volunteer organization"
+      }],
+    education: [
+      {
+        institution: "UT Austin", 
+        url: "https://www.utexas.edu/", 
+        area: "CS", 
+        studyType: "bachelor", 
+        startDate: "2021", 
+        endDate: "2025"
+      }],
+    interests: [
+      {
+        name: "art"
+      },
+      {
+        name: "music"
+      },
+      {
+        name: "AI"
+      },
+      {
+        name: "full stack"
+      }]
+};
+parseOb = JSON.parse(JSON.stringify(obj));
+//display name
+n = document.getElementById("name");
+n.innerHTML = parseOb.basics.name;
+//display intro
+intro = document.getElementById("intro");
+intro.innerHTML = parseOb.basics.summary;
+//display education information
+edu = document.getElementById("education");
+    for (const e of parseOb.education) {
+        inst = document.createElement("li");
+        url = document.createElement("a");
+        url.setAttribute("href", e.url);
+        url.innerHTML = e.institution;
+        inst.appendChild(url);
+        edu.appendChild(inst);
+        instList = document.createElement("ul");
+        inst.appendChild(instList);
+        ar = document.createElement("li");
+        ar.innerHTML = e.studyType + " " + e.area;
+        instList.appendChild(ar);
+        dateInst = document.createElement("li");
+        dateInst.innerHTML = e.startDate + " - " + e.endDate;
+        instList.appendChild(dateInst);
+      }
+      
+//display experiences
+expsList = document.getElementById("expList");
+for (const e of parseOb.work) {
+        exp = document.createElement("li");
+        url = document.createElement("a");
+        url.setAttribute("href", e.url);
+        url.innerHTML = e.name;
+        exp.appendChild(url);
+        expsList.appendChild(exp);
+        eachExpList = document.createElement("ul");
+        exp.appendChild(eachExpList);
+        dates = document.createElement("li");
+        dates.innerHTML = e.startDate + " to " + e.endDate;
+        eachExpList.appendChild(dates);
+        pos = document.createElement("li");
+        pos.innerHTML = e.position;
+        eachExpList.appendChild(pos);
+        sum = document.createElement("li");
+        sum.innerHTML = e.summary;
+        eachExpList.appendChild(sum);
+      }
+// displays interests
+interestList = document.getElementById("interestsList");
+for (const i of parseOb.interests) {
+        interest = document.createElement("li");
+        interest.innerHTML = i.name;
+        interestList.appendChild(interest);
+      }
+
+//display contact info
+email = document.getElementById("email");
+email.innerHTML = parseOb.basics.email;
+phoneNum = document.getElementById("phone");
+phoneNum.innerHTML = parseOb.basics.phone;
+address = document.getElementById("address");
+address.innerHTML = parseOb.basics.location.address + " " + parseOb.basics.location.city + " " + parseOb.basics.location.reigon + " " + parseOb.basics.location.postalCode;
   </script>
+  
 </body>
+
+
 </html>
