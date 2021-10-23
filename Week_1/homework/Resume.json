@@ -1,0 +1,51 @@
+{"basics": {
+    "name": "Zara Shipchandler",
+    "image": "https://photos.app.goo.gl/LoMZYt5mmwtQ4sZ4A",
+    "email": "z.shipchandler@utexas.edu",
+    "phone": "(832) 206 3070",
+    "summary": "freshman CS ctudent at the University of Texas at Austin",
+    "location": {
+        "address": "26723 Cedardale Pines Dr",
+        "postalCode": "77494",
+        "city": "katy",
+        "countryCode": "+1",
+        "reigon": "Texas"
+    },
+    "work": [
+        {
+            "name":"zel tutoting", 
+            "position": "founder", 
+            "url": "tinyurl.com/zeltutoring", 
+            "startDate": "2020-04-28", 
+            "endDate": "2021-05-21", 
+            "summary": "founded organization"},
+        {
+            "name":"NCL", 
+            "position": "VP", 
+            "url": "https://www.nationalcharityleague.org/", 
+            "startDate": "2015-04-28", 
+            "endDate": "2021-05-21", 
+            "summary": "volunteer organization"}],
+    "education": [
+        {"institution": "UT Austin", 
+            "url": "www.utexas.edu", 
+            "area": "CS", 
+            "studyType": "bachelor", 
+            "startDate": "2021", 
+            "endDate": "2025"}],
+    "interests": [
+        {
+            "name": "art"
+        },
+        {
+            "name": "music"
+        },
+        {
+            "name": "AI"
+        },
+        {
+            "name": "full stack"
+        }
+    ]
+}
+}
