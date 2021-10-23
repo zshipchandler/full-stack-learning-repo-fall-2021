@@ -1,0 +1,29 @@
+#howManyTasks {
+    margin: 20px;
+}
+
+h2 {
+    padding: 20px;
+}
+
+#AddTaskBar {
+    display: flex;
+    margin: 10px;
+    flex-direction: row;
+    
+}
+
+#todo-button {
+    padding: 0px 30px;
+    height: 50px;
+    width: 100px;
+    border-radius: 20px;
+    background-color: #ed7a11;
+}
+
+#input_bar {
+    height: 50px;
+    width: 500px;
+    margin-right: 20px;
+}
+

@@ -91,9 +91,38 @@ app.post("/user", (req, res) => {
 
 // Updating a User
 app.put("/user/:user_id", (req, res) => {
-  //TODO
+  const body = req.body;
+  //check if valid fields exist (like in creating user)
+  if (body.age == undefined && body.name == undefined) {
+    return res.json({
+      msg: "Error: age or name not defined in request",
+      data: {},
+    });
+  }
+  //does the user exist?
+  //the user does not exist- return error message
+  const user_id = req.params.user_id;
+  if (users[user_id] == undefined) {
+    return res.json({ msg: "Error: user id not found- user does not exist", data: {} });
+  }  
+  //if we have reached here, the user does exist- update the user info
+  const user_obj = { id: user_id, name: body.name, age: body.age };
+  users[user_id] = user_obj;
+  //success!
+  return res.json({ msg: "User successfully updated", data: {} });
+
 });
 // Deleting a User
 app.delete("/user/:user_id", (req, res) => {
-  //TODO
+  //check if user ID exists
+  const user_id = req.params.user_id;
+  if (users[user_id] == undefined) {
+    return res.json({ msg: "Error: user id not found- user does not exist", data: {} });
+  } 
+  //user ID exists- delete user
+  delete users[user_id];
+  //success!
+  return res.json({msg: "User successfully deleted"});
+
+  
 });
