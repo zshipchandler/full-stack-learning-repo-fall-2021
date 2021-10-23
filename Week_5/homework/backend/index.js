@@ -2,12 +2,13 @@ const express = require("express");
 const cors = require("cors");
 const admin = require("firebase-admin");
 const dotenv = require("dotenv").config();
-const credentials = require("./cred").credentials;
+//const credentials = require("./cred").credentials;
+const credentials = require("./cred.json");
 
 // Connect to firebase and use firestore
 admin.initializeApp({
   credential: admin.credential.cert(credentials),
-  databaseURL: "YOUR_DATABASE_URL_HERE",
+  databaseURL: "https://Project1.firebaseio.com",
 });
 
 // Intialize firestore instance
@@ -28,8 +29,8 @@ app.get("/users", async (req, res) => {
   snapshot.forEach((doc) => {
     users.push(doc.data());
   });
-  return res.json({ msg: "Success", data: users });
-});
+  return res.json({ msg: "Success", data: users});
+}); 
 
 // Create user
 app.post("/users", async (req, res) => {
@@ -53,6 +54,19 @@ app.post("/users", async (req, res) => {
 });
 
 // TODO: Create query for users that are older than a given value
+app.get("/users/:minAge", async (req, res) => {
+  const snapshot = await db.collection("users").get();
+  const minAge = req.params.minAge;
+  const users = [];
+  snapshot.forEach((doc) => {
+    if (parseInt(doc.data().Age) > parseInt(minAge)) {
+      users.push(doc.data());
+    }
+  });
+  return res.json({ msg: "Success", data: users });
+}); 
+
+
 // OPTIONAL: Write a function to delete users from the database
 // OPTIONAL: Write a function to update user information
 
